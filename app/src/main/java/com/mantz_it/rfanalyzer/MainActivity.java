@@ -41,6 +41,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import us.potatosaur.p0t4t0labs.potatoradio.JniWrapper;
+import us.potatosaur.p0t4t0labs.potatoradio.R;
+
 /**
  * <h1>RF Analyzer - Main Activity</h1>
  *
@@ -83,6 +86,7 @@ public class MainActivity extends Activity implements IQSourceInterface.Callback
 	private boolean running = false;
 	private File recordingFile = null;
 	private int demodulationMode = Demodulator.DEMODULATION_OFF;
+    private TextView textOutput;
 
 	private static final String LOGTAG = "MainActivity";
 	private static final String RECORDING_DIR = "RFAnalyzer";
@@ -127,6 +131,15 @@ public class MainActivity extends Activity implements IQSourceInterface.Callback
 			}
 		}
 
+        final ScrollView scroll = (ScrollView) findViewById(R.id.textOutputScroll);
+        scroll.post(new Runnable() {
+            @Override
+            public void run() {
+                scroll.fullScroll(View.FOCUS_DOWN);
+            }
+        });
+        textOutput = (TextView) findViewById(R.id.textOutput);
+
 		// Get references to the GUI components:
 		fl_analyzerFrame = (FrameLayout) findViewById(R.id.fl_analyzerFrame);
 
@@ -144,6 +157,23 @@ public class MainActivity extends Activity implements IQSourceInterface.Callback
 
 		// Put the analyzer surface in the analyzer frame of the layout:
 		fl_analyzerFrame.addView(analyzerSurface);
+
+        // Debug test the text area
+        textOutput.append("Allo\n");
+        int i = 1, j = 0;
+        while(i <= 50) {
+            textOutput.append("line " + i + "\n");
+            if (i == 25) {
+                while (j < 20) {
+                    textOutput.append("words ");
+                    j++;
+                }
+                textOutput.append("\n");
+            }
+            i++;
+        }
+
+		textOutput.append(JniWrapper.testString());
 
 		// Restore / Initialize the running state and the demodulator mode:
 		if(savedInstanceState != null) {

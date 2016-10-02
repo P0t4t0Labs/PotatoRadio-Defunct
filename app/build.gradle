@@ -2,10 +2,10 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 21
-    buildToolsVersion "20.0.0"
+    buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "com.mantz_it.rfanalyzer"
+        applicationId "us.potatosaur.p0t4t0labs.potatoradio"
         minSdkVersion 14
         targetSdkVersion 21
         versionCode 12
@@ -13,8 +13,13 @@ android {
     }
     buildTypes {
         release {
-            runProguard false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/ndk/Android.mk'
         }
     }
 }

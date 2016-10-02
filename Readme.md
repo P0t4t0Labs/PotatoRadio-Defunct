@@ -1,3 +1,19 @@
+Potato Radio
+============
+
+This is a fork of (demantz/RFAnalyzer)[https://github.com/demantz/RFAnalyzer].
+
+The objective of this project is to provide communication over cheap RF.
+
+## After clone
+`git submodule init`
+`git submoudle update`
+
+More docs to come.
+
+
+Begin original readme:
+
 RF Analyzer for Android
 =======================
 

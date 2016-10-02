@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import java.io.File;
 
+import us.potatosaur.p0t4t0labs.potatoradio.R;
+
 /**
  * <h1>RF Analyzer - Settings Fragment</h1>
  *
